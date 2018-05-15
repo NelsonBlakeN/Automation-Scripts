@@ -1,0 +1,5 @@
+[Unit]
+Description=Remove old files from the Downloads folder
+
+[Service]
+ExecStart=/bin/bash -c '/home/blake/scripts/Automation/clean_downloads.sh >> /home/blake/Documents/logs/clean_downloads.log'
