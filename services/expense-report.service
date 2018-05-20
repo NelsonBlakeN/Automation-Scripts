@@ -1,0 +1,5 @@
+[Unit]
+Description=Send weekly expense report
+
+[Service]
+ExecStart=/bin/bash -c '/home/blake/scripts/Automation/expense_report.sh'
