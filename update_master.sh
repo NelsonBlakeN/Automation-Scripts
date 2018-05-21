@@ -36,7 +36,7 @@ for folder in */; do
             # Check for merge conflicts
             error_msg=$(echo $output | grep -oP '(; fix)\s+\K\S+')
             if [[ $error_msg == "conflicts" ]]; then
-                echo "\nMerge conflicts occured:"
+                printf "\nMerge conflicts occured:\n"
                 echo $output
             else
                 echo "No staging branch found."
