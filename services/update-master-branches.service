@@ -1,0 +1,5 @@
+[Unit]
+Description=Update master branches from the staging branch of all git repositories
+
+[Service]
+ExecStart=/bin/bash -c '/home/blake/scripts/Automation/update_master_branches.sh > /home/blake/Documents/logs/update_master_branches.log'
