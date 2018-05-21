@@ -1,7 +1,7 @@
 #!/bin/bash
 
 date '+[ %m/%d/%Y %H:%M:%S ]'
-echo "Updating all master branches..."
+printf "Updating all master branches...\n\n"
 
 # Start in development directory
 cd ~/Dropbox/DevWork
@@ -21,13 +21,14 @@ for folder in */; do
         echo "Current branch is $orig_branch"
 
         # Switch to master
-        git checkout master &> /dev/null
+        git checkout master 2>&1 &> /dev/null
         if [[ $? -ne 0 ]]; then
             echo "A problem occured when checking out master. Skipping"
             continue
         fi
 
         # Pull in staging, or fail silently
+        echo -n "Merging..."
         output="$(git merge staging 2>&1)"
         if [[ $? -eq 0 ]]; then
             echo "$output"
@@ -35,7 +36,7 @@ for folder in */; do
             # Check for merge conflicts
             error_msg=$(echo $output | grep -oP '(; fix)\s+\K\S+')
             if [[ $error_msg == "conflicts" ]]; then
-                echo "Merge conflicts occured:"
+                echo "\nMerge conflicts occured:"
                 echo $output
             else
                 echo "No staging branch found."
@@ -43,12 +44,16 @@ for folder in */; do
         fi
 
         # Switch back to current branch
-        git checkout $orig_branch
+        current_branch=$(git status | awk '$1=="On"{print $3}')
+        if [[ $current_branch != $orig_branch ]]; then
+            git checkout $orig_branch
+        fi
 
         # Continue
+        echo
     fi
 
     cd ..
 done
 
-echo "Complete."
+printf "Complete.\n"
