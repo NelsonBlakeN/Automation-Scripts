@@ -2,4 +2,4 @@
 Description=Send weekly expense report
 
 [Service]
-ExecStart=/bin/bash -c '/home/blake/scripts/Automation/expense_report.sh'
+ExecStart=/bin/bash -c '/home/blake/scripts/Automation/expense_report.sh | tree /home/blake/Documents/logs/expense_report.log /home/blake/Documents/logs/GlobalLog'
