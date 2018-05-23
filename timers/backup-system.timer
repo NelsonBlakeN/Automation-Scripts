@@ -5,7 +5,7 @@ Description=Backs up the whole system twice a week
 # Define time to run
 OnCalendar=Sun,Wed *-*-* 04:00:00
 # If the last time was missed, rerun as soon as you can
-Persistance=true
+Persistent=true
 WakeSystem=true
 Unit=backup-system.service
 

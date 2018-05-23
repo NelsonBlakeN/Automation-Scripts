@@ -5,7 +5,7 @@ Description=Daily removal of old Downloads files
 # Once a day
 OnCalendar=*-*-* 03:40:00
 # If the last time was missed, rerun as soon as you can
-Persistance=true
+Persistent=true
 # Wake the system
 WakeSystem=true
 Unit=clean-downloads.service

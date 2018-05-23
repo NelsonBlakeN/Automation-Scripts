@@ -2,4 +2,4 @@
 Description=Full system upgrade
 
 [Service]
-ExecStart=/bin/bash -c '/home/blake/scripts/Automation/upgrade_system.sh >> /home/blake/Documents/logs/system_upgrade.log'
+ExecStart=/bin/bash -c '/home/blake/scripts/Automation/upgrade_system.sh >> /home/blake/Documents/logs/upgrade_system.log'

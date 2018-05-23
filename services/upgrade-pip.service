@@ -1,0 +1,5 @@
+[Unit]
+Description=Upgrade the pip version for each virtual environment stored in the home folder
+
+[Service]
+ExecStart=/bin/bash -c '/home/blake/scripts/Automation/upgrade_pip.sh > /home/blake/Documents/logs/upgrade_pip.log'

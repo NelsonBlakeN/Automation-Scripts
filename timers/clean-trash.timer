@@ -5,7 +5,7 @@ Description=Daily removal of files from trash
 # Once a day, early in the morning
 OnCalendar=*-*-* 03:30:00
 # If the last time was missed, rerun as soon as you can
-Persistance=true
+Persistent=true
 # Wake system
 WakeSystem=true
 Unit=clean-trash.service
