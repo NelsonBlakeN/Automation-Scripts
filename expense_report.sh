@@ -3,8 +3,8 @@
 date '+[ %m/%d/%Y %H:%M:%S ]'
 
 echo Running expense report...
-source $HOME/Py3Envs/cfp/bin/activate
+source /home/blake/Py3Envs/cfp/bin/activate
 
-$HOME/Dropbox/DevWork/CashFlowParser/CFPApp
+/home/blake/Dropbox/DevWork/CashFlowParser/CFPApp
 
 printf "Complete.\n"
