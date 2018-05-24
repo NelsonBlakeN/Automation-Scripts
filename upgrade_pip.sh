@@ -2,7 +2,7 @@
 
 date '+[ %m/%d/%Y %H:%M:%S ]'
 
-envs=$HOME/Py3Envs
+envs=/home/blake/Py3Envs
 
 # Change directory to venvs
 cd $envs
