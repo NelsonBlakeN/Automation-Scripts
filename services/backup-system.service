@@ -2,4 +2,4 @@
 Description=Full system backup
 
 [Service]
-ExecStart=/bin/bash -c '/home/blake/scripts/Automation/backup_system.sh | tee /home/blake/Documents/logs/backup_system.log /home/blake/Documents/logs/GlobalLog'
+ExecStart=/bin/bash -c '/home/blake/scripts/Automation/backup_system.sh > /home/blake/Documents/logs/backup_system.log'
