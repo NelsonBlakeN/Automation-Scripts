@@ -1,7 +1,7 @@
 #!/bin/bash
 
 date '+[ %m/%d/%Y %H:%M:%S ]'
-printf "Updating all master branches...\n\n"
+printf "Updating all master branches...\n"
 
 # Start in development directory
 cd ~/Dropbox/DevWork
@@ -56,4 +56,4 @@ for folder in */; do
     cd ..
 done
 
-printf "Complete.\n"
+printf "Complete.\n\n"

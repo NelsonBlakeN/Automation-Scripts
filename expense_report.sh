@@ -7,4 +7,4 @@ source /home/blake/Py3Envs/cfp/bin/activate
 
 /home/blake/Dropbox/DevWork/CashFlowParser/CFPApp
 
-printf "Complete.\n"
+printf "Complete.\n\n"
