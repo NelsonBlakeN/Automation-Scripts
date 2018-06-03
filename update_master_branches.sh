@@ -4,7 +4,7 @@ date '+[ %m/%d/%Y %H:%M:%S ]'
 printf "Updating all master branches...\n"
 
 # Start in development directory
-cd ~/Dropbox/DevWork
+cd /home/blake/Dropbox/DevWork
 
 # Loop through each project folder
 for folder in */; do
