@@ -1,0 +1,5 @@
+[Unit]
+Description=Update Python package version requirements
+
+[Service]
+ExecStart=/bin/bash -c '/home/blake/scripts/Automation/update_reqs.sh | tee /home/blake/Documents/logs/update_reqs.log /home/blake/Documents/logs/GlobalLog'
