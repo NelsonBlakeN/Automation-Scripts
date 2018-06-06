@@ -2,4 +2,6 @@
 Description=Delete old files from the trash folder
 
 [Service]
-ExecStart=/bin/bash -c '/home/blake/scripts/Automation/clean_trash.sh | tee -a /home/blake/Documents/logs/clean_trash.log /home/blake/Documents/logs/GlobalLog'
+Environment=SCRIPTS=/home/blake/scripts/Automation
+Environment=LOGS=/home/blake/Documents/logs
+ExecStart=/bin/bash -c "${SCRIPTS}/clean_trash.sh | tee -a ${LOGS}/clean_trash.log ${LOGS}/GlobalLog"

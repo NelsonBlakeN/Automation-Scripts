@@ -2,4 +2,6 @@
 Description=Update Python package version requirements
 
 [Service]
-ExecStart=/bin/bash -c '/home/blake/scripts/Automation/update_reqs.sh | tee /home/blake/Documents/logs/update_reqs.log /home/blake/Documents/logs/GlobalLog'
+Environment=SCRIPTS=/home/blake/scripts/Automation
+Environment=LOGS=/home/blake/Documents/logs
+ExecStart=/bin/bash -c "${SCRIPTS}/update_reqs.sh | tee ${LOGS}/update_reqs.log ${LOGS}/GlobalLog"

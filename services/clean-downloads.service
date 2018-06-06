@@ -2,4 +2,6 @@
 Description=Remove old files from the Downloads folder
 
 [Service]
-ExecStart=/bin/bash -c '/home/blake/scripts/Automation/clean_downloads.sh | tee -a /home/blake/Documents/logs/clean_downloads.log /home/blake/Documents/logs/GlobalLog'
+Environment=SCRIPTS=/home/blake/scripts/Automation
+Environment=LOGS=/home/blake/Documents/logs
+ExecStart=/bin/bash -c "${SCRIPTS}/clean_downloads.sh | tee -a ${LOGS}/clean_downloads.log ${LOGS}GlobalLog'

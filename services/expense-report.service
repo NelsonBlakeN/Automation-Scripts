@@ -2,4 +2,6 @@
 Description=Send weekly expense report
 
 [Service]
-ExecStart=/bin/bash -c '/home/blake/scripts/Automation/expense_report.sh | tee -a /home/blake/Documents/logs/expense_report.log /home/blake/Documents/logs/GlobalLog'
+Environment=SCRIPTS=/home/blake/scripts/Automation
+Environment=LOGS=/home/blake/Documents/logs
+ExecStart=/bin/bash -c "${SCRIPTS}/expense_report.sh | tee -a ${LOGS}/expense_report.log ${LOGS}/GlobalLog"
