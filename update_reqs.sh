@@ -33,6 +33,11 @@ for proj in */; do
             # Update requirements.txt
             echo "* Updating requirements file"
             pip freeze > requirements.txt
+
+            echo "* Committing changes"
+            git add requirements.txt
+            git commit -m "Committing requirements changes. This is an automated command."
+            git push
         fi
 
         # Clean up
