@@ -19,20 +19,35 @@ num_trash = sys.argv[TRASH_LIST]
 
 if num_downloads is not 0:
     downloads = sys.argv[DL_LIST]
-    DL_CONTENT.format(num_downloads, downloads)
+    DL_CONTENT = DL_CONTENT.format(num_downloads, downloads)
+else:
+    DL_CONTENT = DL_CONTENT.format("", "")
+
+print("Downloads")
+print(num_downloads)
+print(downloads)
+print(DL_CONTENT)
+
 if sys.argv[TRASH_NUM] is not 0:
     trash = sys.argv[TRASH_LIST]
     TRASH_CONTENT.format(num_trash, trash)
+else:
+    TRASH_CONTENT.format("", "")
 
-EMAIL_CONTENT.format(DL_CONTENT, TRASH_CONTENT)
+print("Trash")
+print(num_trash)
+print(trash)
 
-msg = MIMEMultipart("alternative", None, [MIMEText(EMAIL_CONTENT, 'html')])
-msg['Subject'] = "Cleanup Review"
-msg['From'] = FROM
-msg['TO'] = TO
-server = smtplib.SMTP(SERVER)
-server.ehlo()
-server.starttls()
-server.login(TO, PASSWORD)
-server.sendmail(FROM, TO, msg.as_string())
-server.quit()
+#if downloads is not None and trash is not None:
+#    EMAIL_CONTENT.format(DL_CONTENT, TRASH_CONTENT)
+#
+#    msg = MIMEMultipart("alternative", None, [MIMEText(EMAIL_CONTENT, 'html')])
+#    msg['Subject'] = "Cleanup Review"
+#    msg['From'] = FROM
+#    msg['TO'] = TO
+#    server = smtplib.SMTP(SERVER)
+#    server.ehlo()
+#    server.starttls()
+#    server.login(TO, PASSWORD)
+#    server.sendmail(FROM, TO, msg.as_string())
+#    server.quit()

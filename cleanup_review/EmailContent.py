@@ -1,5 +1,6 @@
 DL_CONTENT = """
-<p> {} files/folders will be deleted from you Downloads folder soon! </p>
+<p> {} files/folders will be deleted from your Downloads folder soon! </p>
+
 {}
 """
 
