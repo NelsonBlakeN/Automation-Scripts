@@ -2,7 +2,7 @@
 Description=Review files that will be automatically deleted soon.
 
 [Timer]
-# Once a week
+# Once a day
 OnCalendar=daily
 # If the last time was missed, rerun as soon as you can
 Persistent=true
