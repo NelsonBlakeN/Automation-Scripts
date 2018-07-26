@@ -34,8 +34,6 @@ if downloads_files is not None or trash_files is not None:
     try:
         email_text = email_content.EMAIL_CONTENT.format(files_from_download, files_from_trash)
 
-        print("Email content: " + email_text)
-
         msg = MIMEMultipart("alternative", None, [MIMEText(email_text, 'html')])
         msg['Subject'] = "Cleanup Review"
         msg['From'] = FROM
