@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# echo "$(date)"
 date '+[ %m/%d/%Y %H:%M:%S ]'
 echo "Cleaning Downloads folder..."
 

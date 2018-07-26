@@ -1,7 +1,7 @@
 [Unit]
-Description=Full system upgrade
+Description=Review files that are about to be automatically cleaned
 
 [Service]
 Environment=SCRIPTS=/home/blake/scripts/Automation
 Environment=LOGS=/home/blake/Documents/logs
-ExecStart=/bin/bash -c "${SCRIPTS}/cleanup_review/cleanup_review.py | tee -a ${LOGS}/cleanup_review.log ${LOGS}/GlobalLog"
+ExecStart=/bin/bash -c "${SCRIPTS}/cleanup_review/cleanup_review.sh | tee -a ${LOGS}/cleanup_review.log ${LOGS}/GlobalLog"
