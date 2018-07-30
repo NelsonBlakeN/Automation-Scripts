@@ -1,7 +1,6 @@
 
 class EmailContent:
     def __init__(self):
-
         self.DL_CONTENT = """
         <p> {} files/folders will be deleted from your Downloads folder soon! </p>
 

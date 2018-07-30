@@ -1,10 +1,9 @@
 #!/usr/bin/python3
-
 import sys
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from EmailUtils import FROM, TO, SERVER, PASSWORD
+from EmailUtils import EmailUtils
 from EmailContent import EmailContent
 
 DL_QUANTITY     = 1
@@ -17,32 +16,34 @@ num_downloads   = sys.argv[DL_QUANTITY]
 trash_files     = None
 num_trash       = sys.argv[TRASH_QUANTITY]
 
-email_content       = EmailContent()
-files_from_download = ""
-files_from_trash    = ""
-email_text          = ""
+email_content = EmailContent()
 
 if num_downloads is not 0:
-    downloads_files = sys.argv[DL_FILES]
-    files_from_download = email_content.DL_CONTENT.format(num_downloads, downloads_files)
+    downloads_files = sys.argv[DL_LIST]
+    download_content = content.DL_CONTENT.format(num_downloads, downloads_files)
+else:
+    download_content = ""
 
 if num_trash is not 0:
-    trash_files = sys.argv[TRASH_FILES]
-    files_from_trash = email_content.TRASH_CONTENT.format(num_trash, trash_files)
+    trash_files = sys.argv[TRASH_LIST]
+    trash_content = content.TRASH_CONTENT.format(num_trash, trash_files)
+else:
+    trash_content = ""
 
-if downloads_files is not None or trash_files is not None:
+if num_downloads is 0 or num_trash is 0:
     try:
-        email_text = email_content.EMAIL_CONTENT.format(files_from_download, files_from_trash)
+        utils = EmailUtils()
+        email = content.EMAIL_CONTENT.format(download_content, trash_content)
 
-        msg = MIMEMultipart("alternative", None, [MIMEText(email_text, 'html')])
+        msg = MIMEMultipart("alternative", None, [MIMEText(email, 'html')])
         msg['Subject'] = "Cleanup Review"
-        msg['From'] = FROM
-        msg['TO'] = TO
-        server = smtplib.SMTP(SERVER)
+        msg['From'] = utils.FROM
+        msg['TO'] = utils.TO
+        server = smtplib.SMTP(utils.SERVER)
         server.ehlo()
         server.starttls()
-        server.login(TO, PASSWORD)
-        server.sendmail(FROM, TO, msg.as_string())
+        server.login(utils.TO, utils.PASSWORD)
+        server.sendmail(utils.FROM, utils.TO, msg.as_string())
         server.quit()
     except Exception as e:
         print("Email failed; try again later.")

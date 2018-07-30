@@ -2,6 +2,7 @@
 # Back up vimrc file
 
 date '+[ %m/%d/%Y %H:%M:%S ]'
+echo "* Updating vimrc backup."
 echo -n "* Calculating checksums..."
 
 home=/home/blake
@@ -21,3 +22,4 @@ else
 fi
 
 echo "* Complete."
+echo

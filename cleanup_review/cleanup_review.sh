@@ -10,14 +10,14 @@ downloads="$(find /home/blake/Downloads/ -mtime +19 -print)"
 num_downloads="$(find /home/blake/Downloads/ -mtime +19 -print | wc -l)"
 
 # Count number of files in trash
-trash="$(find /home/blake/.local/share/Trash/* -mtime +19 -print)"
-num_trash="$(find /home/blake/.local/share/Trash/* -mtime +19 -print | wc -l)"
+trash="$(find /home/blake/.local/share/Trash/ -mtime +19 -print)"
+num_trash="$(find /home/blake/.local/share/Trash/ -mtime +19 -print | wc -l)"
 echo "complete."
 
 echo -n "* Running python script..."
 # Pass all data into the python script, which will send the notification
 $MAIL $num_downloads "$downloads" $num_trash "$trash"
-echo "complete."
+[[ $? -eq 0 ]] && echo "complete."
 
 if [[ $num_downloads -ne 0 ]]; then
    echo "* Found $num_downloads impending Downloads deletion(s): "
