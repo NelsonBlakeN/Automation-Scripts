@@ -3,7 +3,7 @@ Description=Weekly upgrade of full system
 
 [Timer]
 # Once a week
-OnCalendar=Sun 00:00:00
+OnCalendar=Sun 00:04:00
 # If the last time was missed, rerun as soon as you can
 Persistent=true
 Unit=upgrade-system.service
