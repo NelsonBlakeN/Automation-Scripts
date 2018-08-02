@@ -1,1 +1,1 @@
-List of all scripts and descriptions
+My daily development environment is a laptop running Arch Linux. This kind of environment has the potential for lots of automation, which I try to take advantage of. This project contains lots of bash scripts, as well as their corresponding schedulers and other dependencies, that perform a variety of automated tasks.
