@@ -4,3 +4,5 @@ cleanup_review/EmailUtils.py
 # Unimportant data
 *.pyc
 cleanup_review/__pycache__
+
+# More to come
