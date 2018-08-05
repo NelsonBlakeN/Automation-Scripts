@@ -36,7 +36,8 @@ for proj in */; do
 
             echo "* Committing changes"
             git add requirements.txt
-            git commit -m "Committing requirements changes. This is an automated command."
+            git -c user.name='NelsonBlakeN' -c user.email='nelson.blaken@gmail.com' commit -m "Committing requirements changes. This is an automated command."
+            echo "* Pushing to remote repo"
             git push
         fi
 
