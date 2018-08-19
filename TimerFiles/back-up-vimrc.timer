@@ -1,0 +1,12 @@
+[Unit]
+Description=Back up vimrc monthly
+
+[Timer]
+# Once a week
+OnCalendar=monthly
+# If the last time was missed, rerun as soon as you can
+Persistent=true
+Unit=back-up-vimrc.service
+
+[Install]
+WantedBy=multi-user.target
