@@ -3,5 +3,4 @@ Description=Full system backup
 
 [Service]
 Environment=SCRIPTS=/home/blake/scripts/autoscripts
-#Environment=LOGS=/home/blake/Documents/logs
 ExecStart=/bin/bash -c "${SCRIPTS}/back_up_system"
