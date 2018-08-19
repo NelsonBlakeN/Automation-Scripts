@@ -2,6 +2,5 @@
 Description=Delete old files from the trash folder
 
 [Service]
-Environment=SCRIPTS=/home/blake/scripts/Automation
-Environment=LOGS=/home/blake/Documents/logs
-ExecStart=/bin/bash -c "${SCRIPTS}/clean_trash.sh | tee -a ${LOGS}/clean_trash.log ${LOGS}/GlobalLog"
+Environment=SCRIPTS=/home/blake/scripts/autoscripts
+ExecStart=/bin/bash -c "${SCRIPTS}/clean_trash"

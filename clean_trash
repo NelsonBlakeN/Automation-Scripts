@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SERVICES=/home/blake/scripts/autoscripts/Services
+LOGS=/home/blake/Documents/logs
+
+${SERVICES}/clean_trash.sh | tee -a ${LOGS}/clean_trash.log ${LOGS}/GlobalLog
