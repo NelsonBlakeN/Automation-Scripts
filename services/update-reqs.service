@@ -1,7 +1,0 @@
-[Unit]
-Description=Update Python package version requirements
-
-[Service]
-Environment=SCRIPTS=/home/blake/scripts/Automation
-Environment=LOGS=/home/blake/Documents/logs
-ExecStart=/bin/bash -c "${SCRIPTS}/update_reqs.sh | tee -a ${LOGS}/update_reqs.log ${LOGS}/GlobalLog"

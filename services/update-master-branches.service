@@ -1,7 +1,0 @@
-[Unit]
-Description=Update master branches from the staging branch of all git repositories
-
-[Service]
-Environment=SCRIPTS=/home/blake/scripts/Automation
-Environment=LOGS=/home/blake/Documents/logs
-ExecStart=/bin/bash -c "${SCRIPTS}/update_master_branches.sh | tee -a ${LOGS}/update_master_branches.log ${LOGS}/GlobalLog"

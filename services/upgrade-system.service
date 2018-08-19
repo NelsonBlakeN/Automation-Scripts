@@ -1,7 +1,0 @@
-[Unit]
-Description=Full system upgrade
-
-[Service]
-Environment=SCRIPTS=/home/blake/scripts/Automation
-Environment=LOGS=/home/blake/Documents/logs
-ExecStart=/bin/bash -c "${SCRIPTS}/upgrade_system.sh | tee -a ${LOGS}/upgrade_system.log ${LOGS}/GlobalLog"
