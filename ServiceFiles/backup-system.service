@@ -1,7 +1,0 @@
-[Unit]
-Description=Full system backup
-
-[Service]
-Environment=SCRIPTS=/home/blake/scripts/Automation
-Environment=LOGS=/home/blake/Documents/logs
-ExecStart=/bin/bash -c "${SCRIPTS}/backup_system.sh > ${LOGS}/backup_system.log"
