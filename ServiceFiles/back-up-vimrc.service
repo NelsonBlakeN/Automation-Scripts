@@ -2,6 +2,6 @@
 Description=Full system upgrade
 
 [Service]
-Environment=SCRIPTS=/home/blake/scripts/Automation
-Environment=LOGS=/home/blake/Documents/logs
-ExecStart=/bin/bash -c "${SCRIPTS}/back_up_vimrc.sh | tee -a ${LOGS}/back_up_vimrc.log ${LOGS}/GlobalLog"
+Environment=SCRIPTS=/home/blake/scripts/autoscripts
+#Environment=LOGS=/home/blake/Documents/logs
+ExecStart=/bin/bash -c "${SCRIPTS}/back_up_vimrc"

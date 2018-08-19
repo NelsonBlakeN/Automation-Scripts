@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SERVICES=/home/blake/scripts/autoscripts/Services
+LOGS=/home/blake/Documents/logs
+
+${SERVICES}/back_up_vimrc.sh | tee -a ${LOGS}/back_up_vimrc.log ${LOGS}/GlobalLog
