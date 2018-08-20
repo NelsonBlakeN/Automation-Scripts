@@ -19,21 +19,21 @@ num_trash       = sys.argv[TRASH_QUANTITY]
 email_content = EmailContent()
 
 if num_downloads is not 0:
-    downloads_files = sys.argv[DL_LIST]
-    download_content = content.DL_CONTENT.format(num_downloads, downloads_files)
+    downloads_files = sys.argv[DL_FILES]
+    download_content = email_content.DL_CONTENT.format(num_downloads, downloads_files)
 else:
     download_content = ""
 
 if num_trash is not 0:
-    trash_files = sys.argv[TRASH_LIST]
-    trash_content = content.TRASH_CONTENT.format(num_trash, trash_files)
+    trash_files = sys.argv[TRASH_FILES]
+    trash_content = email_content.TRASH_CONTENT.format(num_trash, trash_files)
 else:
     trash_content = ""
 
 if num_downloads is 0 or num_trash is 0:
     try:
         utils = EmailUtils()
-        email = content.EMAIL_CONTENT.format(download_content, trash_content)
+        email = email_content.EMAIL_CONTENT.format(download_content, trash_content)
 
         msg = MIMEMultipart("alternative", None, [MIMEText(email, 'html')])
         msg['Subject'] = "Cleanup Review"

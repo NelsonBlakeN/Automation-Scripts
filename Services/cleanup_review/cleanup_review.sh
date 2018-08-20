@@ -3,7 +3,7 @@
 date '+[ %m/%d/%Y %H:%M:%S ]'
 echo -n "* Reviewing old files..."
 
-MAIL=/home/blake/scripts/Automation/cleanup_review/cleanup_review.py
+MAIL=/home/blake/scripts/autoscripts/Services/cleanup_review/cleanup_review.py
 
 # Save and count number of old Downloads files
 downloads="$(find /home/blake/Downloads/ -mtime +19 -print)"
