@@ -18,19 +18,26 @@ num_trash       = sys.argv[TRASH_QUANTITY]
 
 email_content = EmailContent()
 
-if num_downloads is not 0:
+print("\t- Found {} downloads and {} trash files.".format(num_downloads, num_trash))
+
+if num_downloads is not '0':
+    print("\t- Collecting downloads...", end='')
     downloads_files = sys.argv[DL_FILES]
     download_content = email_content.DL_CONTENT.format(num_downloads, downloads_files)
+    print("complete.")
 else:
     download_content = ""
 
-if num_trash is not 0:
+if num_trash is not '0':
+    print("\t- Collecting trash...", end='')
     trash_files = sys.argv[TRASH_FILES]
     trash_content = email_content.TRASH_CONTENT.format(num_trash, trash_files)
+    print("complete.")
 else:
     trash_content = ""
 
-if num_downloads is 0 or num_trash is 0:
+if num_downloads is not '0' or num_trash is not '0':
+    print("\t- Generating email...")
     try:
         utils = EmailUtils()
         email = email_content.EMAIL_CONTENT.format(download_content, trash_content)
@@ -45,6 +52,7 @@ if num_downloads is 0 or num_trash is 0:
         server.login(utils.TO, utils.PASSWORD)
         server.sendmail(utils.FROM, utils.TO, msg.as_string())
         server.quit()
+        print("\t- Complete.")
     except Exception as e:
-        print("Email failed; try again later.")
+        print("\t- Email failed; try again later.")
         print(str(e))
