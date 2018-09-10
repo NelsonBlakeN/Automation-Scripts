@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SERVICES=/home/blake/scripts/autoscripts/Services
+LOGS=/home/blake/Documents/logs
+
+${SERVICES}/back_up_system.sh > ${LOGS}/back_up_system.log

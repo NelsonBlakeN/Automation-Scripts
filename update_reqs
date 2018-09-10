@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SCRIPTS=/home/blake/scripts/autoscripts/Services
+LOGS=/home/blake/Documents/logs
+
+${SCRIPTS}/update_reqs.sh | tee -a ${LOGS}/update_reqs.log ${LOGS}/GlobalLog

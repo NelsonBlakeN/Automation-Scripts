@@ -1,0 +1,6 @@
+[Unit]
+Description=Full system upgrade
+
+[Service]
+Environment=SCRIPTS=/home/blake/scripts/autoscripts
+ExecStart=/bin/bash -c "${SCRIPTS}/upgrade_system"

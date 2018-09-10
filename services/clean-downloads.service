@@ -1,7 +1,0 @@
-[Unit]
-Description=Remove old files from the Downloads folder
-
-[Service]
-Environment=SCRIPTS=/home/blake/scripts/Automation
-Environment=LOGS=/home/blake/Documents/logs
-ExecStart=/bin/bash -c "${SCRIPTS}/clean_downloads.sh | tee -a ${LOGS}/clean_downloads.log ${LOGS}/GlobalLog"

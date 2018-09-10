@@ -1,7 +1,6 @@
 #!/bin/bash
 # Full System Backup
 
-# echo $(date '+[ %m/%d/%Y %H:%M:%S ]');
 date '+[ %m/%d/%Y %H:%M:%S ]'
 
 distro=arch
@@ -53,4 +52,3 @@ Option explanations:
 --xattrs : Enable extended attributes support
 --exclued : Exclude certain files/directories
 TAR OPTIONS
-

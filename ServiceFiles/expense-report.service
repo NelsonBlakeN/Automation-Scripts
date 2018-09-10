@@ -1,0 +1,6 @@
+[Unit]
+Description=Send weekly expense report
+
+[Service]
+Environment=SCRIPTS=/home/blake/scripts/autoscripts
+ExecStart=/bin/bash -c "${SCRIPTS}/expense_report"

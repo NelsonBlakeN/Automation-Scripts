@@ -1,0 +1,6 @@
+[Unit]
+Description=Update master branches from the staging branch of all git repositories
+
+[Service]
+Environment=SCRIPTS=/home/blake/scripts/autoscripts
+ExecStart=/bin/bash -c "${SCRIPTS}/update_master_branches"

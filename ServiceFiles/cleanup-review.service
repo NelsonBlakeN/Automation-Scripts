@@ -1,0 +1,6 @@
+[Unit]
+Description=Review files that are about to be automatically cleaned
+
+[Service]
+Environment=SCRIPTS=/home/blake/scripts/autoscripts
+ExecStart=/bin/bash -c "${SCRIPTS}/cleanup_review"

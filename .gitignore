@@ -1,3 +1,7 @@
+# Sensitive info
 cleanup_review/EmailUtils.py
+
+# Unimportant data
 *.pyc
-__pycache__
+cleanup_review/__pycache__
+launch.json
