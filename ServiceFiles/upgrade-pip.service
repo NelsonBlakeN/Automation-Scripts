@@ -2,6 +2,5 @@
 Description=Upgrade the pip version for each virtual environment stored in the home folder
 
 [Service]
-Environment=SCRIPTS=/home/blake/scripts/Automation
-Environment=LOGS=/home/blake/Documents/logs
-ExecStart=/bin/bash -c "${SCRIPTS}/upgrade_pip.sh | tee -a ${LOGS}/upgrade_pip.log ${LOGS}/GlobalLog"
+Environment=SCRIPTS=/home/blake/scripts/autoscripts
+ExecStart=/bin/bash -c "${SCRIPTS}/upgrade_pip"

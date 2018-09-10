@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SCRIPTS=/home/blake/scripts/autoscripts/Services
+LOGS=/home/blake/Documents/logs
+
+${SCRIPTS}/upgrade_pip.sh | tee -a ${LOGS}/upgrade_pip.log ${LOGS}/GlobalLog
