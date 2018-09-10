@@ -1,0 +1,6 @@
+#!/bin/bash
+
+SCRIPTS=/home/blake/scripts/autoscripts/Services
+LOGS=/home/blake/Documents/logs
+
+${SCRIPTS}/update_master_branches.sh | tee -a ${LOGS}/update_master_branches.log ${LOGS}/GlobalLog
