@@ -6,6 +6,7 @@ Description=Review files that will be automatically deleted soon.
 OnCalendar=*-*-* 00:02:30
 # If the last time was missed, rerun as soon as you can
 Persistent=true
+WakeSystem=true
 Unit=cleanup-review.service
 
 [Install]
