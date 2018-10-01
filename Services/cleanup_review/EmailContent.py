@@ -4,12 +4,13 @@ class EmailContent:
         self.DL_CONTENT = """
         <p> {} files/folders will be deleted from your Downloads folder soon! </p>
 
-        {}
+        <p padding-left: 50pt > {} </p>
         """
 
         self.TRASH_CONTENT = """
         <p> {} files/folders will be deleted from your Trash folder soon! </p>
-        {}
+
+        <p padding-left: 50pt > {} </p>
         """
 
         self.EMAIL_CONTENT = """

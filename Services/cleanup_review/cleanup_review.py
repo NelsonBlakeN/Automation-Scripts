@@ -23,6 +23,8 @@ print("\t- Found {} downloads and {} trash files.".format(num_downloads, num_tra
 if num_downloads is not '0':
     print("\t- Collecting downloads...", end='')
     downloads_files = sys.argv[DL_FILES]
+    downloads_list = downloads_files.split("\n")
+    downloads_files = "<br>".join(downloads_list)
     download_content = email_content.DL_CONTENT.format(num_downloads, downloads_files)
     print("complete.")
 else:
@@ -31,6 +33,8 @@ else:
 if num_trash is not '0':
     print("\t- Collecting trash...", end='')
     trash_files = sys.argv[TRASH_FILES]
+    trash_list = trash_files.split("\n")
+    trash_files = "<br>".join(trash_list)
     trash_content = email_content.TRASH_CONTENT.format(num_trash, trash_files)
     print("complete.")
 else:
