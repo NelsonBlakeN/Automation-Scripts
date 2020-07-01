@@ -5,3 +5,6 @@ cleanup_review/EmailUtils.py
 *.pyc
 cleanup_review/__pycache__
 launch.json
+
+# Configs
+*.idea
