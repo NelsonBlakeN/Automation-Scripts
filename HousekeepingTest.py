@@ -84,9 +84,6 @@ def mock_handler_constructor(*args, **kwargs):
     return handler
 
 
-def mock_info(*args, **kwargs):
-    pass
-
 # Classes
 
 
@@ -219,33 +216,47 @@ class TestLogger(unittest.TestCase):
         self.assertIn(mock.call('test_log.txt'), mock_handler.call_args_list)
         self.assertEqual(logger.level, 20)
 
-    # The goal is to mock the info (and warning/error functions) of the logging object
-    # TODO: Figure out what the class name of the actual logger object is and try to reference
-    # that in the mock.patch decorator
-    @unittest.skip('Not completely implemented')
-    @mock.patch('logging.info', side_effect=mock_info)
-    def test_logger_log(self, mock_log_info):
+    def test_logger_log(self):
         # Arrange
+        test_logger = Logger()
         test_log_a = mock.Mock()
         test_log_b = mock.Mock()
-
-        test_logger = Logger()
         test_logger.logs = [test_log_a, test_log_b]
 
         # Act
         test_logger.log('message')
 
         # Assert
-        print(mock_log_info.call_args_list)
+        test_log_a.info.assert_called_with('message')
+        test_log_b.info.assert_called_with('message')
 
-    @unittest.skip('Not implemented')
     def test_logger_error(self):
-        pass
+        # Arrange
+        test_logger = Logger()
+        test_log_a = mock.Mock()
+        test_log_b = mock.Mock()
+        test_logger.logs = [test_log_a, test_log_b]
 
-    @unittest.skip('Not implemented')
+        # Act
+        test_logger.error("error")
+
+        # Assert
+        test_log_a.error.assert_called_with("error")
+        test_log_b.error.assert_called_with("error")
+
     def test_logger_warning(self):
-        pass
+        # Arrange
+        test_logger = Logger()
+        test_log_a = mock.Mock()
+        test_log_b = mock.Mock()
+        test_logger.logs = [test_log_a, test_log_b]
 
+        # Act
+        test_logger.warning("warning")
+
+        # Assert
+        test_log_a.warning.assert_called_with("warning")
+        test_log_b.warning.assert_called_with("warning")
 
 if __name__ == "__main__":
     unittest.main()

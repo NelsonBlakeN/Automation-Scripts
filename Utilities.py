@@ -25,7 +25,6 @@ class Logger(object):
 
     def log(self, message):
         for log in self.logs:
-            print(log)
             log.info(message)
 
     def error(self, message):
