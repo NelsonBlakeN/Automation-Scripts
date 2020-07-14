@@ -1,6 +1,7 @@
 import mock
 import unittest
-from Utilities import get_exec_permission, Logger
+from Utilities import get_exec_permission
+from Logger import Logger
 
 # Constants
 API_BASE_URL = 'https://sleepy-fortress-77799.herokuapp.com/scripts/'
