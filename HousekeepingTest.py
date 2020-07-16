@@ -1,4 +1,5 @@
-import mock
+# import mock
+from mock import patch, Mock, call
 import unittest
 from Utilities import get_exec_permission
 from Logger import Logger
@@ -59,9 +60,9 @@ def mock_verify_log_location(*args, **kwargs):
 
 # Return mock log object
 def mock_create_logger(*args, **kwargs):
-    mock_handler = mock.Mock()
+    mock_handler = Mock()
     mock_handler.baseFilename = args[0]
-    mock_log = mock.Mock()
+    mock_log = Mock()
     mock_log.handlers = [mock_handler]
     return mock_log
 
@@ -78,7 +79,7 @@ def mock_handler_constructor(*args, **kwargs):
     def mock_add_handler(self, handler):
         pass  # Don't need to do anything with handlers yet
 
-    handler = mock.Mock()
+    handler = Mock()
     handler.baseFilename = args[0]
     handler.setLevel = mock_set_level
     handler.addHandler = mock_add_handler
@@ -95,23 +96,23 @@ class TestGetExecutionPermission(unittest.TestCase):
     def tearDown(self):
         pass
 
-    @mock.patch('requests.get', side_effect=mock_get_script)
+    @patch('requests.get', side_effect=mock_get_script)
     def test_get_exec_permission(self, mock_get):
         # Act
         val = get_exec_permission("valid_script")
 
         # Assert
-        self.assertIn(mock.call(API_BASE_URL + "valid_script"), mock_get.call_args_list)
+        self.assertIn(call(API_BASE_URL + "valid_script"), mock_get.call_args_list)
         self.assertEqual(val, 1)
 
-    @mock.patch('requests.get', side_effect=mock_get_script)
+    @patch('requests.get', side_effect=mock_get_script)
     def test_get_exec_permission_deny(self, mock_get):
         try:
             # Act
             val = get_exec_permission("deny_script")
 
             # Assert
-            self.assertIn(mock.call(API_BASE_URL + "deny_script"), mock_get.call_args_list)
+            self.assertIn(call(API_BASE_URL + "deny_script"), mock_get.call_args_list)
             self.assertEqual(val, 0)
         except AssertionError as e:
             raise
@@ -119,15 +120,15 @@ class TestGetExecutionPermission(unittest.TestCase):
             self.fail("Method threw exception.")
             print(e)
 
-    @mock.patch('requests.post', side_effect=mock_post_script)
-    @mock.patch('requests.get', side_effect=mock_get_script)
+    @patch('requests.post', side_effect=mock_post_script)
+    @patch('requests.get', side_effect=mock_get_script)
     def test_get_exec_permission_dne(self, mock_get, mock_post):
         # Act
         val = get_exec_permission("new_script")
 
         # Assert
-        self.assertIn(mock.call(API_BASE_URL + "new_script"), mock_get.call_args_list)
-        self.assertIn(mock.call(API_BASE_URL + "new_script/1"), mock_post.call_args_list)
+        self.assertIn(call(API_BASE_URL + "new_script"), mock_get.call_args_list)
+        self.assertIn(call(API_BASE_URL + "new_script/1"), mock_post.call_args_list)
 
         self.assertEqual(val, 1)
 
@@ -143,8 +144,9 @@ class TestLogger(unittest.TestCase):
     def tearDown(self):
         pass
 
-    @mock.patch('os.path.expanduser', side_effect=mock_path_expanduser)
-    @mock.patch('os.path.exists', side_effect=mock_path_exists)
+    # TODO: Modify for generic Log
+    @patch('os.path.expanduser', side_effect=mock_path_expanduser)
+    @patch('os.path.exists', side_effect=mock_path_exists)
     def test_logger_verify_path_exists(self, mock_exists, mock_expanduser):
         # Arrange
         test_logger = get_empty_logger()
@@ -154,13 +156,14 @@ class TestLogger(unittest.TestCase):
 
         # Assert
         # Verify the function got through each directory level
-        self.assertIn(mock.call('/home/test/real/path/to/'), mock_exists.call_args_list)
+        self.assertIn(call('/home/test/real/path/to/'), mock_exists.call_args_list)
 
     # TODO: Mock the mkdir function so that it doesn't do anything,
     # but then check it's call args to make sure it was called with the right path
-    @mock.patch('os.mkdir', side_effect=mock_mkdir)
-    @mock.patch('os.path.expanduser', side_effect=mock_path_expanduser)
-    @mock.patch('os.path.exists', side_effect=mock_path_exists)
+    # TODO: Modify for generic Log
+    @patch('os.mkdir', side_effect=mock_mkdir)
+    @patch('os.path.expanduser', side_effect=mock_path_expanduser)
+    @patch('os.path.exists', side_effect=mock_path_exists)
     def test_logger_verify_path_dne(self, mock_exists, mock_expanduser, mock_mkdir):
         # Arrange
         test_logger = get_empty_logger()
@@ -186,24 +189,21 @@ class TestLogger(unittest.TestCase):
         except TypeError as e:
             self.assertIn('name', str(e))
 
-    def test_add_log(self):
+    @patch('Logger.TextLog')
+    def test_add_log(self, mock_text_log):
         # Arrange
         test_logger = Logger()
-        # Mock location verification function
-        test_logger._Logger__verify_log_location = mock_verify_log_location
-        # Mock logger creation
-        test_logger._Logger__create_log = mock_create_logger
 
         # Act
-        test_logger.add_log('test_log')
+        test_logger.add_log('test_log', 'text', '/path/to/log/')
 
         # Assert
         # Assert that a log was created
         self.assertEqual(len(test_logger.logs), 1)
-        # Assert that a log was created with the correct name
-        self.assertEqual(test_logger.logs[0].handlers[0].baseFilename, 'test_log')
+        # Assert that a log was created with the correct arguments
+        mock_text_log.assert_called_with('test_log', '/path/to/log/')
 
-    @mock.patch('logging.Handler', side_effect=mock_handler_constructor)
+    @patch('logging.Handler', side_effect=mock_handler_constructor)
     def test_create_logger(self, mock_handler):
         # Arrange
         test_logger = Logger()
