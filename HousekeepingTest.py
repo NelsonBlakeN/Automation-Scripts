@@ -3,6 +3,7 @@ from mock import patch, Mock, call
 import unittest
 from Utilities import get_exec_permission
 from Logger import Logger
+import Log
 
 # Constants
 API_BASE_URL = 'https://sleepy-fortress-77799.herokuapp.com/scripts/'
@@ -147,12 +148,14 @@ class TestLogger(unittest.TestCase):
     # TODO: Modify for generic Log
     @patch('os.path.expanduser', side_effect=mock_path_expanduser)
     @patch('os.path.exists', side_effect=mock_path_exists)
-    def test_logger_verify_path_exists(self, mock_exists, mock_expanduser):
+    # @patch('Log.TextLog')
+    def test_text_log_verify_log_location(self, mock_exists, mock_expanduser):
         # Arrange
-        test_logger = get_empty_logger()
+        print(Log.TextLog)
+        test_logger = Log.TextLog("test log")
 
         # Act
-        test_logger._Logger__verify_log_location('~/real/path/to/log')
+        test_logger._verify_log_location('~/real/path/to/log')
 
         # Assert
         # Verify the function got through each directory level
@@ -202,20 +205,6 @@ class TestLogger(unittest.TestCase):
         self.assertEqual(len(test_logger.logs), 1)
         # Assert that a log was created with the correct arguments
         mock_text_log.assert_called_with('test_log', '/path/to/log/')
-
-    @patch('logging.Handler', side_effect=mock_handler_constructor)
-    def test_create_logger(self, mock_handler):
-        # Arrange
-        test_logger = Logger()
-
-        # Act
-        logger = test_logger._Logger__create_log('test_log', 'test_log.txt')
-
-        # Assert
-        # TODO: Look up the variable for a logger level
-        # since I can't access the internet on an airplane, and assert it is correct
-        self.assertIn(mock.call('test_log.txt'), mock_handler.call_args_list)
-        self.assertEqual(logger.level, 20)
 
     def test_logger_log(self):
         # Arrange

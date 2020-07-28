@@ -39,18 +39,27 @@ class ILog(metaclass=abc.ABCMeta):
         """Write a warning message to the log"""
         raise NotImplementedError
 
+    @abc.abstractmethod
+    def _verify_log_location(self, location: str):
+        """Verify that the location of the log is valid"""
+        raise NotImplementedError
+
 
 class TextLog(ILog):
     '''Creates a log as a text file'''
 
-    def __init__(self, log_name: str, log_path: str):
+    def __init__(self, log_name: str, log_path: str = None):
         '''
         Instantiates an instance of the TextLog, a text file based log.
         :param log_name: The name of the log file.
         :param log_path: The location of the log file, not including the name.
         '''
+
+        if not log_path:
+            return
+
         # Verify path
-        self.__verify_file_path(log_path)
+        self.__verify_log_location(log_path)
 
         # Create logger
         self.log = logging.getLogger(log_name)
@@ -70,24 +79,25 @@ class TextLog(ILog):
         self.log.addHandler(handler)
 
     def info(self, message: str):
-        '''
+        """
         Overrides ILog.info
         Writes an information message to the log
         :param message: The message to be written
-        '''
+        """
         self.log.info(message)
 
     def warning(self, message: str):
-        '''Overrides ILog.warning'''
+        """Overrides ILog.warning"""
         self.log.warning(message)
 
-    def __verify_file_path(self, file_path):
-        '''
+    def _verify_log_location(self, location):
+        """
+        Overrides ILog.__verify
         Verify if the location of the given file exists.
         If the location does not exist, it will be created recursively.
         :param path: The given path of the file, not including the name of the file.
-        '''
-        items = file_path.split("/")
+        """
+        items = location.split("/")
         folder_path = os.path.expanduser(items.pop(0) + '/')
         for item in items:
             folder_path += item + "/"
